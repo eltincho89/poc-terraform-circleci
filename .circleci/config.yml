@@ -24,6 +24,7 @@ jobs:
         - run: terraform apply -auto-approve
 workflows:
   version: 2
+  build_and_test:
     jobs:
       - fmt
       - init
