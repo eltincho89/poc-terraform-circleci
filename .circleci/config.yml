@@ -7,3 +7,6 @@
         - checkout # check out the code in the project directory
         - run: echo "hello world" # run the `echo` command
         - run: terraform fmt -check=true 
+        - run: terraform init  
+        - run: terraform plan 
+        - run: terraform apply -auto-approve
