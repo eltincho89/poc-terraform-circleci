@@ -1,12 +1,25 @@
  version: 2.1
  jobs:
-    build:
-      docker: 
+    fmt: 
+      docker:  
         - image: hashicorp/terraform:full 
       steps:
         - checkout # check out the code in the project directory
         - run: echo "hello world" # run the `echo` command
         - run: terraform fmt -check=true 
-        - run: terraform init  
-        - run: terraform plan 
+    init:
+      docker: 
+        - image: hashicorp/terraform:full 
+      steps:
+        - run: terraform init   
+    plan:
+      docker: 
+        - image: hashicorp/terraform:full 
+      steps:
+        - run: terraform plan
+    apply:
+      docker: 
+        - image: hashicorp/terraform:full 
+      steps:
         - run: terraform apply -auto-approve
+
