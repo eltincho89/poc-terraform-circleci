@@ -8,6 +8,12 @@ jobs:
         - checkout # check out the code in the project directory
         - run: echo "hello world" # run the `echo` command
         - run: terraform fmt -check=true 
+    sleep:
+      docker: 
+        - image: hashicorp/terraform:full 
+      working_directory: ~/circleci-demo-workflows
+      steps:
+        - run: sleep 60
     init:
       docker: 
         - image: hashicorp/terraform:full 
@@ -31,6 +37,7 @@ workflows:
   build_and_test:
     jobs:
       - fmt
+      - sleep
       - init:
           requires:
             - fmt
