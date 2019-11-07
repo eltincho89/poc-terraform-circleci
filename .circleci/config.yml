@@ -10,7 +10,7 @@ executors:
     working_directory: ~/circleci-demo-workflows 
 jobs:
     fmt: 
-      my-executor: terraform  
+      executor: terraform  
       steps:
         - attach_workspace:
             at: ~/circleci-demo-workflows
@@ -23,12 +23,11 @@ jobs:
             root: /root/circleci-demo-workflows
             paths: '*'
     sleep:
-      my-executor: helloworld
+      executor: helloworld
       steps:
         - run: sleep 60
     init:
-      my-executor: terraform  
-      working_directory: ~/circleci-demo-workflows
+      executor: terraform  
       steps:
         - attach_workspace:
             at: ~/circleci-demo-workflows
@@ -40,8 +39,7 @@ jobs:
             root: /root/circleci-demo-workflows
             paths: '*'
     plan:
-      my-executor: terraform  
-      working_directory: ~/circleci-demo-workflows
+      executor: terraform  
       steps:
         - attach_workspace:
             at: ~/circleci-demo-workflows
@@ -50,8 +48,7 @@ jobs:
             root: /root/circleci-demo-workflows
             paths: '*'
     apply:
-      my-executor: terraform  
-      working_directory: ~/circleci-demo-workflows
+      executor: terraform  
       steps:
         - attach_workspace:
             at: ~/circleci-demo-workflows
