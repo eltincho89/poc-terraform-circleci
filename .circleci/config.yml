@@ -32,6 +32,9 @@ jobs:
         - run: ls -alF
         - run: terraform init   
         - run: ls -alF
+        - persist_to_workspace:
+            root: /root/circleci-demo-workflows
+            paths: '*'
     plan:
       docker: 
         - image: hashicorp/terraform:full 
@@ -40,6 +43,9 @@ jobs:
         - attach_workspace:
             at: ~/circleci-demo-workflows
         - run: terraform plan
+        - persist_to_workspace:
+            root: /root/circleci-demo-workflows
+            paths: '*'
     apply:
       docker: 
         - image: hashicorp/terraform:full 
