@@ -8,6 +8,8 @@ jobs:
         - checkout # check out the code in the project directory
         - run: echo "hello world" # run the `echo` command
         - run: terraform fmt -check=true 
+        - attach_workspace:
+            at: ~/circleci-demo-workflows
     sleep:
       docker: 
         - image: hashicorp/terraform:full 
@@ -19,18 +21,24 @@ jobs:
         - image: hashicorp/terraform:full 
       working_directory: ~/circleci-demo-workflows
       steps:
+        - attach_workspace:
+            at: ~/circleci-demo-workflows
         - run: terraform init   
     plan:
       docker: 
         - image: hashicorp/terraform:full 
       working_directory: ~/circleci-demo-workflows
       steps:
+        - attach_workspace:
+            at: ~/circleci-demo-workflows
         - run: terraform plan
     apply:
       docker: 
         - image: hashicorp/terraform:full 
       working_directory: ~/circleci-demo-workflows
       steps:
+        - attach_workspace:
+            at: ~/circleci-demo-workflows
         - run: terraform apply -auto-approve
 workflows:
   version: 2
