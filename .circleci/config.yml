@@ -14,7 +14,7 @@ jobs:
         - run: ls -alF
         - persist_to_workspace:
             root: /root/circleci-demo-workflows
-            paths: *
+            paths: '*'
     sleep:
       docker: 
         - image: hashicorp/terraform:full 
