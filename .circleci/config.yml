@@ -27,6 +27,14 @@ workflows:
   build_and_test:
     jobs:
       - fmt
-      - init
-      - plan
+      - init:
+	  requires:
+            - fmt
+      - plan:
+	  requires:
+            - init
+      - apply:
+	  requires:
+            - plan
+		
 
