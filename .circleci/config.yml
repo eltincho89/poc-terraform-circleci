@@ -2,7 +2,8 @@ version: 2
 jobs:
     fmt: 
       docker:  
-        - image: hashicorp/terraform:full 
+        - image: hashicorp/terraform:full
+      working_directory: ~/circleci-demo-workflows 
       steps:
         - checkout # check out the code in the project directory
         - run: echo "hello world" # run the `echo` command
@@ -10,16 +11,19 @@ jobs:
     init:
       docker: 
         - image: hashicorp/terraform:full 
+      working_directory: ~/circleci-demo-workflows
       steps:
         - run: terraform init   
     plan:
       docker: 
         - image: hashicorp/terraform:full 
+      working_directory: ~/circleci-demo-workflows
       steps:
         - run: terraform plan
     apply:
       docker: 
         - image: hashicorp/terraform:full 
+      working_directory: ~/circleci-demo-workflows
       steps:
         - run: terraform apply -auto-approve
 workflows:
