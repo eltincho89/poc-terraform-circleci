@@ -28,13 +28,13 @@ workflows:
     jobs:
       - fmt
       - init:
-	  requires:
+          requires:
             - fmt
       - plan:
-	  requires:
+          requires:
             - init
       - apply:
-	  requires:
+          requires:
             - plan
-		
+                
 
