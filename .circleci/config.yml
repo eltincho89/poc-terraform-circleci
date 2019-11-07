@@ -13,8 +13,8 @@ jobs:
         - run: pwd
         - run: ls -alF
         - persist_to_workspace:
-            root: /root/circleci-demo-workflows
-            paths: main.tf
+            root: /root
+            paths: circleci-demo-workflows/*
     sleep:
       docker: 
         - image: hashicorp/terraform:full 
