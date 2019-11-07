@@ -1,9 +1,16 @@
 version: 2
+executors:
+  terraform:
+    docker:
+      - image: hashicorp/terraform:full
+    working_directory: ~/circleci-demo-workflows 
+  helloworld:
+    docker:
+      - image: ubuntu
+    working_directory: ~/circleci-demo-workflows 
 jobs:
     fmt: 
-      docker:  
-        - image: hashicorp/terraform:full
-      working_directory: ~/circleci-demo-workflows 
+      my-executor: terraform  
       steps:
         - attach_workspace:
             at: ~/circleci-demo-workflows
@@ -16,14 +23,11 @@ jobs:
             root: /root/circleci-demo-workflows
             paths: '*'
     sleep:
-      docker: 
-        - image: hashicorp/terraform:full 
-      working_directory: ~/circleci-demo-workflows
+      my-executor: helloworld
       steps:
         - run: sleep 60
     init:
-      docker: 
-        - image: hashicorp/terraform:full 
+      my-executor: terraform  
       working_directory: ~/circleci-demo-workflows
       steps:
         - attach_workspace:
@@ -36,8 +40,7 @@ jobs:
             root: /root/circleci-demo-workflows
             paths: '*'
     plan:
-      docker: 
-        - image: hashicorp/terraform:full 
+      my-executor: terraform  
       working_directory: ~/circleci-demo-workflows
       steps:
         - attach_workspace:
@@ -47,8 +50,7 @@ jobs:
             root: /root/circleci-demo-workflows
             paths: '*'
     apply:
-      docker: 
-        - image: hashicorp/terraform:full 
+      my-executor: terraform  
       working_directory: ~/circleci-demo-workflows
       steps:
         - attach_workspace:
