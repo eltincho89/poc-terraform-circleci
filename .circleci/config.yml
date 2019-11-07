@@ -28,7 +28,10 @@ jobs:
       steps:
         - attach_workspace:
             at: ~/circleci-demo-workflows
+        - run: pwd
+        - run: ls -alF
         - run: terraform init   
+        - run: ls -alF
     plan:
       docker: 
         - image: hashicorp/terraform:full 
